@@ -820,6 +820,111 @@ h1, h2, h3, h4, h5, h6 {
 
 
 /* ==========================================
+   No Monthly/Yearly Fees Section Start
+========================================== */
+.us-nofees {
+  padding: 50px 20px;
+}
+
+.us-nofees-box {
+  max-width: 1800px;
+  margin: 0 auto;
+  background: url(../images/sec-3/bg.png) no-repeat center center;
+  background-size: cover;
+  border-radius: 40px;
+  padding: 70px 90px 80px;
+  overflow: hidden;
+}
+
+/* ---- Top badge + heading ---- */
+.us-nofees-head {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.us-nofees-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #FF61051A;
+  border: 1.5px solid #FF4808;
+  border-radius: 60px;
+  padding: 13px 24px;
+  margin-bottom: 22px;
+}
+
+.us-nofees-badge span {
+  font-family: "Be Vietnam Pro", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1;
+  background: linear-gradient(90deg, #FFA713 0%, #FF2D06 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.us-nofees-title {
+  font-family: "Bakbak One", sans-serif;
+  font-weight: 400;
+  font-size: 56px;
+  line-height: 64px;
+  letter-spacing: -0.027em;
+  text-align: center;
+  color: #fff;
+  margin: 0;
+}
+
+/* ---- Collage + copy row ---- */
+.us-nofees-row {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  margin-top: 40px;
+}
+
+.us-nofees-media {
+  flex: 0 0 46%;
+}
+
+.us-nofees-media img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.us-nofees-content {
+  flex: 1;
+  text-align: left;
+}
+
+.us-nofees-sub {
+  font-family: "Bakbak One", sans-serif;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 50px;
+  color: #fff;
+  margin: 0 0 26px;
+}
+
+.us-nofees-desc {
+  font-family: "Be Vietnam Pro", sans-serif;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 32px;
+  color: rgba(255, 255, 255, 0.78);
+  margin: 0 0 18px;
+}
+
+.us-nofees-desc:last-child {
+  margin-bottom: 0;
+}
+/* ==========================================
+   No Monthly/Yearly Fees Section End
+========================================== */
+
+
+/* ==========================================
    Footer Section Start
    (exact copy of videoslyai-Final → vsl-footer-main)
 ========================================== */
@@ -950,6 +1055,12 @@ h1, h2, h3, h4, h5, h6 {
   /* features */
   .us-feat { gap: 28px; padding: 28px 26px; }
   .us-feat-headbox .us-bm-img { display: none; }
+  /* no-fees section */
+  .us-nofees-box { padding: 56px 40px 60px; }
+  .us-nofees-title { font-size: 42px; line-height: 50px; }
+  .us-nofees-row { gap: 36px; }
+  .us-nofees-sub { font-size: 32px; line-height: 40px; }
+  .us-nofees-desc { font-size: 19px; line-height: 28px; }
 }
 
 @media (max-width: 767px) {
@@ -972,6 +1083,16 @@ h1, h2, h3, h4, h5, h6 {
   .vsl-footer-nav { gap: 8px 18px; }
   .vsl-footer-nav li { font-size: 14px; }
   .vsl-footer-nav li:not(:last-child)::after { margin-left: 10px; }
+  /* no-fees section: stack collage over copy, center text */
+  .us-nofees { padding: 36px 14px; }
+  .us-nofees-box { padding: 44px 22px 48px; border-radius: 28px; }
+  .us-nofees-title { font-size: 30px; line-height: 36px; }
+  .us-nofees-row { flex-direction: column; gap: 28px; margin-top: 28px; }
+  .us-nofees-media { flex: 1 1 auto; max-width: 420px; margin: 0 auto; }
+  .us-nofees-content { text-align: center; }
+  .us-nofees-sub { font-size: 26px; line-height: 34px; }
+  .us-nofees-sub br { display: none; }
+  .us-nofees-desc { font-size: 17px; line-height: 26px; }
   /* features: stack media over body, video always on top */
   .us-features { padding: 50px 0 56px; }
   .us-feat,
