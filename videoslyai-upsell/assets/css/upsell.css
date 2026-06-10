@@ -485,7 +485,7 @@ h1, h2, h3, h4, h5, h6 {
 /* ---- Section heading ---- */
 .us-feat-head {
   position: relative;
-  max-width: 760px;
+  max-width: 1160px;
   margin: 0 auto 70px;
   text-align: center;
   isolation: isolate;
@@ -504,23 +504,21 @@ h1, h2, h3, h4, h5, h6 {
   border: 2px solid #FF4808;
   border-radius: 18px;
   box-shadow: 0 18px 55px rgba(255, 68, 0, 0.10);
-  padding: 22px 44px;
+  padding: 25px 20px;
 }
 
 .us-feat-headbox .us-bm-img {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  height: 78%;
   pointer-events: none;
-  z-index: -1;
 }
 
-.us-feat-headbox .us-bm-left { right: calc(100% - 60px); }
-.us-feat-headbox .us-bm-right { left: calc(100% - 60px); }
+.us-feat-headbox .us-bm-left { right: calc(100% - 113px); }
+.us-feat-headbox .us-bm-right { left: calc(100% - 113px); }
 
 .us-feat-headbox h2 {
-  font-size: clamp(24px, 3.4vw, 44px);
+  font-size: 60px;
   font-weight: 400;
   line-height: 1.12;
   margin: 0;
@@ -540,28 +538,27 @@ h1, h2, h3, h4, h5, h6 {
 .us-feat-subpill {
   position: relative;
   display: inline-block;
-  margin-top: -16px;
   z-index: 3;
   padding: 9px 24px;
-  border-radius: 40px;
+  border-radius: 0 0 30px 30px;
   background: linear-gradient(90deg, #FFA913 0%, #FF2705 94.37%);
   box-shadow: 0 8px 20px rgba(255, 90, 10, 0.30);
 }
 
 .us-feat-subpill span {
   font-family: "Be Vietnam Pro", sans-serif;
-  font-size: clamp(11px, 1.1vw, 14px);
+  font-size: 20px;
   font-weight: 700;
   color: #fff;
   white-space: nowrap;
 }
 
 .us-feat-subpill .us-bs-img {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: -1;
-  pointer-events: none;
+    position: absolute;
+    top: -10px;
+    z-index: -1;
+    pointer-events: none;
+    transform: scaleY(-1);
 }
 
 .us-feat-subpill .us-bs-left { right: calc(100% - 1px); }
@@ -665,13 +662,25 @@ h1, h2, h3, h4, h5, h6 {
 .us-feat-play svg {
   width: 30px;
   height: 30px;
-  margin-left: 3px;
+  transition: opacity 0.2s ease;
 }
 
-/* hide the play button while the video is playing */
+/* play icon shows by default, pause icon hidden */
+.us-feat-play .us-ic-play { margin-left: 3px; }
+.us-feat-play .us-ic-pause { display: none; margin-left: 0; }
+
+/* While playing: swap to the pause icon */
+.us-feat-video.is-playing .us-feat-play .us-ic-play { display: none; }
+.us-feat-video.is-playing .us-feat-play .us-ic-pause { display: block; }
+
+/* While playing: fade the overlay out, but keep it clickable so it can pause.
+   It reappears (as the pause button) on hover. */
 .us-feat-video.is-playing .us-feat-play {
   opacity: 0;
-  visibility: hidden;
+}
+
+.us-feat-video.is-playing:hover .us-feat-play {
+  opacity: 1;
 }
 
 .us-feat-body {
@@ -811,6 +820,119 @@ h1, h2, h3, h4, h5, h6 {
 
 
 /* ==========================================
+   Footer Section Start
+   (exact copy of videoslyai-Final → vsl-footer-main)
+========================================== */
+.vsl-footer-main {
+  background: url(../images/ftr-bg.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 50px;
+  margin: 0 auto 60px;
+  padding: 80px 20px 60px;
+  max-width: 1800px;
+  width: 100%;
+  position: relative;
+}
+
+.vsl-footer-inner {
+  max-width: 1170px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.vsl-footer-logo img {
+  max-height: 129px;
+}
+
+.vsl-footer-para {
+  font-size: 20px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 1);
+  margin-bottom: 0;
+}
+
+.vsl-footer-span,
+.vsl-foter-can {
+  font-size: 18px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 1);
+  margin-top: 18px;
+  display: flex;
+  gap: 3px;
+  width: 100%;
+  justify-content: center;
+}
+
+.vsl-footer-span {
+  margin-top: 0;
+}
+
+.vsl-loc-text {
+  background: linear-gradient(90deg, #FFA913 0%, #FF2705 100%);
+  color: rgba(255, 255, 255, 1);
+  font-size: 18px;
+  display: flex;
+  padding: 10px 30px;
+  border-radius: 50px;
+  margin-top: 38px;
+  margin-bottom: 40px;
+  align-items: center;
+  gap: 10px;
+}
+
+.vsl-border {
+  height: 1px;
+  width: 100%;
+  margin: 50px 0;
+  background: linear-gradient(90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.2) 50%,
+      rgba(255, 255, 255, 0) 100%);
+}
+
+.vsl-footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.vsl-footer-nav li {
+  position: relative;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.vsl-footer-nav li:not(:last-child)::after {
+  content: "|";
+  margin-left: 18px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.vsl-footer-nav a {
+  color: #fff;
+  text-decoration: none;
+  transition: opacity 0.3s;
+}
+
+.vsl-footer-nav a:hover {
+  opacity: 0.7;
+}
+/* ==========================================
+   Footer Section End
+========================================== */
+
+
+/* ==========================================
    Responsive Styles (centralized)
 ========================================== */
 @media (max-width: 1199px) {
@@ -844,6 +966,12 @@ h1, h2, h3, h4, h5, h6 {
   /* marquee (matches videoslyai-Final) */
   .marquee-track { animation-duration: 22s; }
   .marquee-item { font-size: 0.875rem; }
+  /* footer (matches videoslyai-Final) */
+  .vsl-footer-main { padding: 60px 16px 44px; border-radius: 30px; }
+  .vsl-footer-para { font-size: 16px; }
+  .vsl-footer-nav { gap: 8px 18px; }
+  .vsl-footer-nav li { font-size: 14px; }
+  .vsl-footer-nav li:not(:last-child)::after { margin-left: 10px; }
   /* features: stack media over body, video always on top */
   .us-features { padding: 50px 0 56px; }
   .us-feat,
