@@ -119,7 +119,8 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Small "Skyrocket" pill */
 .us-skyrocket {
-
+    border: 1.5px solid #EC4207;
+    border-bottom: 0;
     position: relative;
     z-index: 3;
     display: inline-block;
@@ -127,13 +128,14 @@ h1, h2, h3, h4, h5, h6 {
     padding: 12px 26px;
     /* margin-bottom: -14px; */
     background: linear-gradient(0deg, rgba(255, 97, 5, 0.1), rgba(255, 97, 5, 0.1)), linear-gradient(90deg, #FFA913 0%, #FF2705 94.37%);
-    z-index: 0;
 
 }
 
+/* Gradient border (mask technique keeps the rounded corners) */
+
 .us-skyrocket span {
   font-family: "Be Vietnam Pro", sans-serif;
-  font-size: clamp(16px, 1.15vw, 20px);
+  font-size:  20px;
   font-weight: 700;
   text-transform: capitalize;
   color: #fff;
@@ -144,26 +146,23 @@ h1, h2, h3, h4, h5, h6 {
 /* Small circuit lines flanking the pill */
 .us-skyrocket .us-bs-img {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  height: auto;
   pointer-events: none;
-    z-index: -1;
 }
 
-.us-skyrocket .us-bs-left { right: calc(100% - 5px); }
-.us-skyrocket .us-bs-right { left: calc(100% - 5px);}
+.us-skyrocket .us-bs-left { right: calc(100% - 1px); }
+.us-skyrocket .us-bs-right { left: calc(100% - 1px);}
 
 /* Main heading box */
 .us-headbox {
   position: relative;
   background: #fff;
-  border: 1px solid rgba(245, 98, 15, 0.18);
+  border: 2px solid #FF4808;
   border-radius: 18px;
   box-shadow: 0 18px 55px rgba(255, 68, 0, 0.10);
-  padding: 20px 20px 20px;
+  padding: 27px 20px;
   max-width: 1235px;
   margin: 0 auto;
+  z-index: 0;
 }
 
 /* Big circuit lines flanking the heading box */
@@ -171,28 +170,24 @@ h1, h2, h3, h4, h5, h6 {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  height: 82%;
-  width: auto;
   pointer-events: none;
+  z-index: -1;
 }
 
-.us-headbox .us-bm-left { right: 100%; margin-right: -2px; }
-.us-headbox .us-bm-right { left: 100%; margin-left: -2px; }
+.us-headbox .us-bm-left { right: calc(100% - 100px); }
+.us-headbox .us-bm-right { left: calc(100% - 100px); }
 
 .us-headbox h1 {
-  font-size: clamp(26px, 4.2vw, 70px);
+  font-size: 70px;
   font-weight: 400;
-  line-height: 1.16;
+  line-height: 1;
   color: var(--us-text);
   margin: 0;
 }
 
 .us-headbox .us-wave {
   display: inline-block;
-  width: clamp(30px, 3.6vw, 46px);
-  height: auto;
   vertical-align: middle;
-  margin-right: 8px;
   margin-top: -6px;
 }
 
@@ -202,13 +197,14 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ---- VSL video ---- */
 .us-video {
-  max-width: 560px;
-  margin: 0 auto 34px;
-  padding: 10px;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.55);
-  box-shadow: 0 0 60px rgba(255, 73, 17, 0.16);
-  position: relative;
+    max-width: 1130px;
+    margin: 0 auto 34px;
+    padding: 10px;
+    border-radius: 16px;
+    box-shadow: 0 0 60px rgba(255, 73, 17, 0.16);
+    position: relative;
+    background: #FF48081A;
+    border: 1.5px solid #FF4808;
 }
 
 .us-video::before {
@@ -253,10 +249,12 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ---- Activate sub-headline ---- */
 .us-activate {
-  font-size: clamp(22px, 3.1vw, 34px);
-  line-height: 1.22;
+  font-size:clamp(24px, 3.1vw, 50px);
+  line-height: 1;
   margin-bottom: 18px;
-  background: linear-gradient(90deg, #ffa713 0%, #ff2d06 100%);
+  background: linear-gradient(90deg, #FFA913 0%, #FF2705 94.37%
+94.37%
+);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -267,16 +265,15 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
   display: inline-block;
   background: #fff;
-  border: 1px solid rgba(245, 98, 15, 0.55);
+  border: 1.5px solid #FF760D;
   padding: 12px 26px;
   margin-bottom: 22px;
 }
 
 .us-price span {
-  font-family: "Bakbak One", sans-serif;
-  font-size: clamp(14px, 1.4vw, 18px);
-  font-weight: 400;
-  color: #2a2a3a;
+    font-size: clamp(16px, 1.4vw, 26px);
+    font-weight: 600;
+    color: #222222;
 }
 
 /* four orange corner dots */
@@ -288,7 +285,7 @@ h1, h2, h3, h4, h5, h6 {
   position: absolute;
   width: 8px;
   height: 8px;
-  background: var(--us-orange);
+  background: #FF760D;
   border-radius: 50%;
 }
 
@@ -297,44 +294,72 @@ h1, h2, h3, h4, h5, h6 {
 .us-price span::before { bottom: -4px; left: -4px; }
 .us-price span::after { bottom: -4px; right: -4px; }
 
-/* ---- Primary CTA ---- */
-.us-cta {
+/* ---- Primary CTA (exact copy of videoslyai-Final → vsl-btn-wrap) ---- */
+.vsl-btn-wrap {
   display: inline-block;
-  font-family: "Bakbak One", sans-serif;
-  font-weight: 400;
-  font-size: clamp(17px, 1.7vw, 23px);
+  padding: 3px;
+  border-radius: 100px;
+  background: linear-gradient(93.46deg,
+      #d15dff 1.78%,
+      #ffd2f4 58.39%,
+      #d15dff 106.91%);
+  background-size: 200%;
+  margin-top: 30px;
+  width: fit-content;
+  margin: 30px auto 0;
+  isolation: isolate;
+  animation-name: stretch;
+  animation-duration: 0.7s;
+  animation-timing-function: ease-out;
+  animation-delay: 0;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  animation-fill-mode: none;
+}
+
+@keyframes stretch {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1.03);
+  }
+}
+
+/* White gap layer */
+.vsl-btn-white {
+  display: inline-block;
+  padding: 4px;
+  /* white gap ki thickness */
+  border-radius: 100px;
+  background: #ffffff;
+}
+
+.vsl-btn-inner {
+  display: inline-block;
+  padding: 18px 48px;
+  border-radius: 100px;
+  background: linear-gradient(93.46deg,
+      #9100cb 1.78%,
+      #e14ebc 58.39%,
+      #9100cb 106.91%);
+  font-size: 22px;
+  font-weight: 800;
   color: #fff;
+  cursor: pointer;
   text-decoration: none;
-  padding: 16px 48px;
-  border-radius: 50px;
-  background: linear-gradient(90deg, #c14dff 0%, #7a45ff 55%, #5b4dff 100%);
-  box-shadow:
-    inset 0 2px 0 rgba(255, 255, 255, 0.35),
-    inset 0 0 0 5px rgba(255, 255, 255, 0.14),
-    0 14px 34px rgba(124, 60, 255, 0.45);
-  transition: transform 0.25s, box-shadow 0.25s;
-  animation: us-glow 2.2s ease-in-out infinite;
-  margin-bottom: 18px;
 }
 
-.us-cta:hover {
-  transform: translateY(-2px);
-  color: #fff;
-}
-
-@keyframes us-glow {
-  0%, 100% {
-    box-shadow:
-      inset 0 2px 0 rgba(255, 255, 255, 0.35),
-      inset 0 0 0 5px rgba(255, 255, 255, 0.14),
-      0 14px 34px rgba(124, 60, 255, 0.45);
-  }
-  50% {
-    box-shadow:
-      inset 0 2px 0 rgba(255, 255, 255, 0.35),
-      inset 0 0 0 5px rgba(255, 255, 255, 0.14),
-      0 14px 48px rgba(124, 60, 255, 0.75);
-  }
+.vsl-btn-inner span {
+  font-size: 40px;
+  background: linear-gradient(180deg,
+      #f2baff -36.36%,
+      #ffffff 48.2%,
+      #f2baff 125%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 /* ---- Payment badges (single image) ---- */
@@ -343,17 +368,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .us-payments img {
-  height: 26px;
-  width: auto;
   max-width: 100%;
   object-fit: contain;
 }
 
 /* ---- Mini reassurance line ---- */
 .us-mini {
-  font-size: clamp(11px, 1vw, 13px);
-  color: var(--us-gray);
-  margin-bottom: 18px;
+    font-size: clamp(11px, 1vw, 14px);
+    color: #222222;
+    margin-bottom: 18px;
+    font-weight: 600;
 }
 
 .us-mini span {
@@ -366,33 +390,81 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 22px;
 }
 
-.us-os img {
-  height: 38px;
-  width: auto;
-  max-width: 100%;
-  object-fit: contain;
-}
+
 
 /* ---- Decline / no-thanks notice ---- */
 .us-decline {
-  max-width: 620px;
-  margin: 0 auto;
-  background: rgba(255, 245, 238, 0.7);
-  border: 1px solid rgba(245, 98, 15, 0.25);
-  border-radius: 10px;
-  padding: 12px 22px;
+    max-width: 780px;
+    margin: 0 auto;
+    border-radius: 60px;
+    padding: 12px 22px;
+    background: #FF61051A;
+    border: 1.5px solid #FF4808;
 }
 
 .us-decline p {
-  font-size: clamp(10px, 0.95vw, 12px);
-  line-height: 1.5;
-  color: var(--us-gray);
-  margin: 0;
+    font-size: clamp(14px, 0.95vw, 14px);
+    line-height: 1.5;
+    color: #222222;
+    margin: 0;
+    font-weight: 500;
 }
 
-.us-decline strong { color: var(--us-orange); font-weight: 800; }
+.us-decline strong { font-weight: 800; }
 /* ==========================================
    Banner Section End
+========================================== */
+
+
+/* ==========================================
+   Marquee / Ticker Section Start
+   (exact copy of videoslyai-Final → marquee-banner)
+========================================== */
+.marquee-banner {
+  background: linear-gradient(90deg, #ffa913 0%, #ff2705 100%);
+  overflow: hidden;
+  width: 100%;
+  padding: 14px 0;
+}
+
+.marquee-track {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  animation: marqueeScroll 30s linear infinite;
+}
+
+@keyframes marqueeScroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+
+  /* -50% kyunki content duplicate hai */
+}
+
+.marquee-item {
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  text-transform: uppercase;
+  padding: 0 18px;
+}
+
+.marquee-star {
+  color: #fff;
+  font-size: 16px;
+  margin: 0 10px;
+}
+
+.marquee-star img {
+  max-width: unset;
+}
+/* ==========================================
+   Marquee / Ticker Section End
 ========================================== */
 
 
@@ -408,6 +480,9 @@ h1, h2, h3, h4, h5, h6 {
   .us-headbox { padding: 30px 30px 24px; }
   .us-headbox .us-bm-img { height: 60%; }
   .us-skyrocket .us-bs-img { width: 56px; }
+  /* marquee (matches videoslyai-Final) */
+  .marquee-track { animation-duration: 24s; }
+  .marquee-item { font-size: 0.85rem; }
 }
 
 @media (max-width: 767px) {
@@ -421,6 +496,9 @@ h1, h2, h3, h4, h5, h6 {
   .us-headbox .us-bm-img,
   .us-skyrocket .us-bs-img { display: none; }
   .us-cta { width: 100%; max-width: 360px; padding: 15px 24px; }
+  /* marquee (matches videoslyai-Final) */
+  .marquee-track { animation-duration: 22s; }
+  .marquee-item { font-size: 0.875rem; }
 }
 
 @media (max-width: 575px) {
@@ -428,4 +506,7 @@ h1, h2, h3, h4, h5, h6 {
   .us-headbox { padding: 24px 18px 20px; }
   .us-os img { height: 32px; }
   .us-payments img { height: 22px; }
+  /* marquee (matches videoslyai-Final) */
+  .marquee-track { animation-duration: 20s; }
+  .marquee-item { font-size: 0.82rem; }
 }
