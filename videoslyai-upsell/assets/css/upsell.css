@@ -1,0 +1,431 @@
+/* ==========================================
+   VideoslyAI – Elite Upgrade (Upsell) Styles
+   ------------------------------------------
+   Design tokens are kept in sync with the
+   main project stylesheet so both pages share
+   the same look & feel.
+========================================== */
+
+:root {
+  --us-orange: #f5620f;
+  --us-orange-light: #ff7a2f;
+  --us-orange2: #FF4808;
+  --us-text: #222222;
+  --us-gray: #6b7280;
+  --us-red: #ff2d06;
+  --us-purple-a: #c14dff;
+  --us-purple-b: #6a4cff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Be Vietnam Pro", sans-serif;
+  color: var(--us-text);
+  background: #fff;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Bakbak One", sans-serif;
+}
+
+/* Custom scrollbar (matches main page) */
+::-webkit-scrollbar { width: 5px; height: 10px; }
+::-webkit-scrollbar-track { background: #eee; border-radius: 10px; }
+::-webkit-scrollbar-thumb { background: linear-gradient(90deg, #ffa713 0%, #ff2d06 100%); }
+
+
+/* ==========================================
+   Banner Section Start
+========================================== */
+.us-banner {
+  background: url(../images/banner/bg.jpg) no-repeat center top;
+  background-size: cover;
+  position: relative;
+  text-align: center;
+  padding: 0px 0 50px;
+  overflow: hidden;
+}
+
+/* Thin gradient line accent at the very bottom of the banner */
+.us-banner::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #ffa713 0%, #ff2d06 100%);
+  opacity: 0.65;
+}
+
+.us-banner .container {
+  max-width: 980px;
+}
+
+/* ---- Top notice bar ---- */
+.us-notice {
+    display: inline-flex;
+    align-items: center;
+    gap: 22px;
+    max-width: 993px;
+    border: 1px solid rgba(245, 98, 15, 0.18);
+    border-radius: 0 0 30px 30px;
+    padding: 20px 25px;
+    margin-bottom: 26px;
+    background: #FFFFFF;
+    box-shadow: 0px 10px 30px 0px #9838181A;
+}
+
+.us-notice-logo {
+  flex: 0 0 auto;
+  padding-right: 22px;
+  border-right: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.us-notice-logo img {
+  display: block;
+}
+
+.us-notice-text {
+  text-align: left;
+}
+
+.us-notice-text p {
+  font-size: clamp(14px, 1vw, 16px);
+  line-height: 1.4;
+  color: #4a4a57;
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+.us-notice-text span {
+    display: block;
+    font-size: clamp(14px, 1vw, 16px);
+    font-weight: 800;
+    color: var(--us-orange);
+}
+
+/* ---- Headline block ---- */
+.us-head-wrap {
+  position: relative;
+  margin: 0 auto 34px;
+}
+
+/* Small "Skyrocket" pill */
+.us-skyrocket {
+
+    position: relative;
+    z-index: 3;
+    display: inline-block;
+    border-radius: 30px 30px 0 0;
+    padding: 12px 26px;
+    /* margin-bottom: -14px; */
+    background: linear-gradient(0deg, rgba(255, 97, 5, 0.1), rgba(255, 97, 5, 0.1)), linear-gradient(90deg, #FFA913 0%, #FF2705 94.37%);
+    z-index: 0;
+
+}
+
+.us-skyrocket span {
+  font-family: "Be Vietnam Pro", sans-serif;
+  font-size: clamp(16px, 1.15vw, 20px);
+  font-weight: 700;
+  text-transform: capitalize;
+  color: #fff;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* Small circuit lines flanking the pill */
+.us-skyrocket .us-bs-img {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: auto;
+  pointer-events: none;
+    z-index: -1;
+}
+
+.us-skyrocket .us-bs-left { right: calc(100% - 5px); }
+.us-skyrocket .us-bs-right { left: calc(100% - 5px);}
+
+/* Main heading box */
+.us-headbox {
+  position: relative;
+  background: #fff;
+  border: 1px solid rgba(245, 98, 15, 0.18);
+  border-radius: 18px;
+  box-shadow: 0 18px 55px rgba(255, 68, 0, 0.10);
+  padding: 20px 20px 20px;
+  max-width: 1235px;
+  margin: 0 auto;
+}
+
+/* Big circuit lines flanking the heading box */
+.us-headbox .us-bm-img {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 82%;
+  width: auto;
+  pointer-events: none;
+}
+
+.us-headbox .us-bm-left { right: 100%; margin-right: -2px; }
+.us-headbox .us-bm-right { left: 100%; margin-left: -2px; }
+
+.us-headbox h1 {
+  font-size: clamp(26px, 4.2vw, 70px);
+  font-weight: 400;
+  line-height: 1.16;
+  color: var(--us-text);
+  margin: 0;
+}
+
+.us-headbox .us-wave {
+  display: inline-block;
+  width: clamp(30px, 3.6vw, 46px);
+  height: auto;
+  vertical-align: middle;
+  margin-right: 8px;
+  margin-top: -6px;
+}
+
+.us-headbox .us-hl {
+ color: var( --us-orange2);
+}
+
+/* ---- VSL video ---- */
+.us-video {
+  max-width: 560px;
+  margin: 0 auto 34px;
+  padding: 10px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 0 60px rgba(255, 73, 17, 0.16);
+  position: relative;
+}
+
+.us-video::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  padding: 2px;
+  background: linear-gradient(89deg, #ff9a4d, #ff5a0a) border-box;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.us-video-inner {
+  position: relative;
+  border-radius: 11px;
+  background: #0a0a12;
+  aspect-ratio: 16 / 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.us-play {
+  width: 64px;
+  height: 64px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(20, 20, 28, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.us-play:hover { transform: scale(1.08); background: rgba(20, 20, 28, 0.85); }
+.us-play svg { width: 26px; height: 26px; margin-left: 2px; }
+
+/* ---- Activate sub-headline ---- */
+.us-activate {
+  font-size: clamp(22px, 3.1vw, 34px);
+  line-height: 1.22;
+  margin-bottom: 18px;
+  background: linear-gradient(90deg, #ffa713 0%, #ff2d06 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ---- Price-increase box (corner dots) ---- */
+.us-price {
+  position: relative;
+  display: inline-block;
+  background: #fff;
+  border: 1px solid rgba(245, 98, 15, 0.55);
+  padding: 12px 26px;
+  margin-bottom: 22px;
+}
+
+.us-price span {
+  font-family: "Bakbak One", sans-serif;
+  font-size: clamp(14px, 1.4vw, 18px);
+  font-weight: 400;
+  color: #2a2a3a;
+}
+
+/* four orange corner dots */
+.us-price::before,
+.us-price::after,
+.us-price span::before,
+.us-price span::after {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: var(--us-orange);
+  border-radius: 50%;
+}
+
+.us-price::before { top: -4px; left: -4px; }
+.us-price::after { top: -4px; right: -4px; }
+.us-price span::before { bottom: -4px; left: -4px; }
+.us-price span::after { bottom: -4px; right: -4px; }
+
+/* ---- Primary CTA ---- */
+.us-cta {
+  display: inline-block;
+  font-family: "Bakbak One", sans-serif;
+  font-weight: 400;
+  font-size: clamp(17px, 1.7vw, 23px);
+  color: #fff;
+  text-decoration: none;
+  padding: 16px 48px;
+  border-radius: 50px;
+  background: linear-gradient(90deg, #c14dff 0%, #7a45ff 55%, #5b4dff 100%);
+  box-shadow:
+    inset 0 2px 0 rgba(255, 255, 255, 0.35),
+    inset 0 0 0 5px rgba(255, 255, 255, 0.14),
+    0 14px 34px rgba(124, 60, 255, 0.45);
+  transition: transform 0.25s, box-shadow 0.25s;
+  animation: us-glow 2.2s ease-in-out infinite;
+  margin-bottom: 18px;
+}
+
+.us-cta:hover {
+  transform: translateY(-2px);
+  color: #fff;
+}
+
+@keyframes us-glow {
+  0%, 100% {
+    box-shadow:
+      inset 0 2px 0 rgba(255, 255, 255, 0.35),
+      inset 0 0 0 5px rgba(255, 255, 255, 0.14),
+      0 14px 34px rgba(124, 60, 255, 0.45);
+  }
+  50% {
+    box-shadow:
+      inset 0 2px 0 rgba(255, 255, 255, 0.35),
+      inset 0 0 0 5px rgba(255, 255, 255, 0.14),
+      0 14px 48px rgba(124, 60, 255, 0.75);
+  }
+}
+
+/* ---- Payment badges (single image) ---- */
+.us-payments {
+  margin-bottom: 12px;
+}
+
+.us-payments img {
+  height: 26px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+/* ---- Mini reassurance line ---- */
+.us-mini {
+  font-size: clamp(11px, 1vw, 13px);
+  color: var(--us-gray);
+  margin-bottom: 18px;
+}
+
+.us-mini span {
+  color: rgba(0, 0, 0, 0.22);
+  margin: 0 6px;
+}
+
+/* ---- OS badges (single image) ---- */
+.us-os {
+  margin-bottom: 22px;
+}
+
+.us-os img {
+  height: 38px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+/* ---- Decline / no-thanks notice ---- */
+.us-decline {
+  max-width: 620px;
+  margin: 0 auto;
+  background: rgba(255, 245, 238, 0.7);
+  border: 1px solid rgba(245, 98, 15, 0.25);
+  border-radius: 10px;
+  padding: 12px 22px;
+}
+
+.us-decline p {
+  font-size: clamp(10px, 0.95vw, 12px);
+  line-height: 1.5;
+  color: var(--us-gray);
+  margin: 0;
+}
+
+.us-decline strong { color: var(--us-orange); font-weight: 800; }
+/* ==========================================
+   Banner Section End
+========================================== */
+
+
+/* ==========================================
+   Responsive Styles (centralized)
+========================================== */
+@media (max-width: 1199px) {
+  .us-headbox .us-bm-img { height: 74%; }
+}
+
+@media (max-width: 991px) {
+  .us-skyrocket span { white-space: normal; }
+  .us-headbox { padding: 30px 30px 24px; }
+  .us-headbox .us-bm-img { height: 60%; }
+  .us-skyrocket .us-bs-img { width: 56px; }
+}
+
+@media (max-width: 767px) {
+  .us-banner { padding: 14px 0 40px; }
+  .us-notice { flex-direction: column; gap: 12px; text-align: center; }
+  .us-notice-logo { padding-right: 0; padding-bottom: 12px; border-right: none; border-bottom: 1px solid rgba(0, 0, 0, 0.08); }
+  .us-notice-text { text-align: center; }
+  .us-headbox h1 br { display: none; }
+  .us-activate br { display: none; }
+  /* hide side circuit graphics so the headline stays clean on mobile */
+  .us-headbox .us-bm-img,
+  .us-skyrocket .us-bs-img { display: none; }
+  .us-cta { width: 100%; max-width: 360px; padding: 15px 24px; }
+}
+
+@media (max-width: 575px) {
+  .us-skyrocket { padding: 8px 16px; }
+  .us-headbox { padding: 24px 18px 20px; }
+  .us-os img { height: 32px; }
+  .us-payments img { height: 22px; }
+}
