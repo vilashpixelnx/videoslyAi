@@ -215,6 +215,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 2px;
   background: linear-gradient(89deg, #ff9a4d, #ff5a0a) border-box;
   -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: destination-out;
   mask-composite: exclude;
   pointer-events: none;
@@ -469,6 +470,313 @@ h1, h2, h3, h4, h5, h6 {
 
 
 /* ==========================================
+   Features (Elite Unlocks) Section Start
+========================================== */
+.us-features {
+  padding: 70px 0 80px;
+  background: #fff;
+  position: relative;
+}
+
+.us-features .container-fluid {
+  max-width: 1630px;
+}
+
+/* ---- Section heading ---- */
+.us-feat-head {
+  position: relative;
+  max-width: 760px;
+  margin: 0 auto 70px;
+  text-align: center;
+  isolation: isolate;
+}
+
+/* Feature cards stack in a clean column, clearly below the heading */
+.us-feat-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.us-feat-headbox {
+  position: relative;
+  background: #fff;
+  border: 2px solid #FF4808;
+  border-radius: 18px;
+  box-shadow: 0 18px 55px rgba(255, 68, 0, 0.10);
+  padding: 22px 44px;
+}
+
+.us-feat-headbox .us-bm-img {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 78%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.us-feat-headbox .us-bm-left { right: calc(100% - 60px); }
+.us-feat-headbox .us-bm-right { left: calc(100% - 60px); }
+
+.us-feat-headbox h2 {
+  font-size: clamp(24px, 3.4vw, 44px);
+  font-weight: 400;
+  line-height: 1.12;
+  margin: 0;
+  color: var(--us-text);
+}
+
+.us-feat-badge {
+  display: inline-block;
+  background: linear-gradient(90deg, #FFA913 0%, #FF2705 94.37%);
+  color: #fff;
+  border-radius: 40px;
+  padding: 2px 20px;
+  line-height: 1.2;
+}
+
+/* bottom "No Monthly..." pill */
+.us-feat-subpill {
+  position: relative;
+  display: inline-block;
+  margin-top: -16px;
+  z-index: 3;
+  padding: 9px 24px;
+  border-radius: 40px;
+  background: linear-gradient(90deg, #FFA913 0%, #FF2705 94.37%);
+  box-shadow: 0 8px 20px rgba(255, 90, 10, 0.30);
+}
+
+.us-feat-subpill span {
+  font-family: "Be Vietnam Pro", sans-serif;
+  font-size: clamp(11px, 1.1vw, 14px);
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.us-feat-subpill .us-bs-img {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.us-feat-subpill .us-bs-left { right: calc(100% - 1px); }
+.us-feat-subpill .us-bs-right { left: calc(100% - 1px); }
+
+/* ---- Feature block ---- */
+.us-feat {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 44px;
+    border-radius: 28px;
+    padding: 65px 50px;
+  background: var(--f-bg);
+  /* clip the decorative circle to the rounded card */
+  overflow: hidden;
+}
+
+.us-feat--vr {
+  flex-direction: row-reverse;
+}
+
+.us-feat-media {
+  position: relative;
+  flex: 0 0 46%;
+}
+
+/* Soft circular backdrop behind the video (theme-colored).
+   Sized relative to the media column + aspect-ratio:1 keeps it
+   perfectly round and scaling on every screen. */
+.us-feat-media::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(-40%, -50%);
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: var(--f-circle);
+    border-radius: 50%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.us-feat-video {
+  position: relative;
+  z-index: 1;
+  aspect-ratio: 16 / 9;
+  border-radius: 27px;
+  /* small inner frame so the white border shows around the video */
+  padding: 10px;
+  background: linear-gradient(90deg, #FFFFFF 0%, #FFFFFF 109.81%);
+  border: 1.5px solid #B227FF;
+  box-shadow: 0px 10px 20px 0px #570F804D;
+}
+
+/* video fills the inner frame, clipped to rounded corners */
+.us-feat-vid {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 18px;
+  background: #0a0a12;
+}
+
+/* large centered play overlay */
+.us-feat-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 76px;
+  height: 76px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(20, 20, 28, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s, opacity 0.25s, visibility 0.25s;
+}
+
+.us-feat-play:hover {
+  transform: translate(-50%, -50%) scale(1.08);
+  background: rgba(20, 20, 28, 0.82);
+}
+
+.us-feat-play svg {
+  width: 30px;
+  height: 30px;
+  margin-left: 3px;
+}
+
+/* hide the play button while the video is playing */
+.us-feat-video.is-playing .us-feat-play {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.us-feat-body {
+  flex: 1;
+  text-align: left;
+}
+
+.us-feat-pill {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  font-family: "Bakbak One", sans-serif;
+  font-weight: 400;
+  font-size: clamp(15px, 1.5vw, 20px);
+  color: #fff;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.18);
+  /* extra left padding leaves room for the protruding icon badge */
+  padding: 10px 30px 10px 30px;
+  border-radius: 40px;
+  border: 1.5px solid var(--f-pbd);
+  background: var(--f-pill);
+  /* 3D extruded base (hard dark layer) + soft drop shadow */
+  box-shadow: 0 7px 0 0 var(--f-pdk), 0 16px 22px var(--f-psh);
+}
+
+.us-feat-pill--2line {
+  text-align: center;
+  line-height: 1.15;
+}
+.us-feat-pill-wrap {
+    display: flex;
+    margin-bottom: 18px;
+      margin-left: -18px;
+}
+.us-feat-ic {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--f-pill);
+  border: 1.5px solid var(--f-pbd);
+  /* matching 3D base + inner top highlight */
+  box-shadow:
+    0 4px 0 0 var(--f-pdk),
+    0 7px 12px rgba(0, 0, 0, 0.22),
+    inset 0 2px 4px rgba(255, 255, 255, 0.40);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+    transform: translate(20px, 0);
+    z-index: 1;
+}
+
+.us-feat-ic img {
+  width: 50%;
+  height: 50%;
+  object-fit: contain;
+  display: block;
+}
+
+.us-feat-desc {
+  font-size: clamp(15px, 1.05vw, 20px);
+  color: #3a3a4a;
+  /* max-width: 470px; */
+  margin: 0;
+}
+
+/* Per-block theme colors (bg / pill gradient / pill shadow) */
+.us-feat--c1 {
+  --f-bg: linear-gradient(90deg, #EAC3FF 0%, #FAF2FF 100%);
+  --f-pill: linear-gradient(180deg, #E0ACFF 4.62%, #961DDA 96.92%);
+  --f-pbd: #B227FF;
+  --f-psh: #570F804D;
+  --f-circle: #E7BCFF;
+  border: 2px solid #C860FF;
+  box-shadow: 0px 0px 80px 0px #79510D1A;
+}
+.us-feat--c2 { --f-bg: linear-gradient(90deg, #ffe0e0, #ffecec); --f-pill: linear-gradient(180deg, #FFB3BC 4.62%, #E11D48 96.92%); --f-pbd: #FF4D6A; --f-psh: #80142E4D; --f-circle: #FFC9CE; }
+.us-feat--c3 { --f-bg: linear-gradient(90deg, #eef4d2, #f5f8e4); --f-pill: linear-gradient(180deg, #DCEB8F 4.62%, #6F9E00 96.92%); --f-pbd: #8FB500; --f-psh: #3E560A4D; --f-circle: #DCEB8F; }
+.us-feat--c4 { --f-bg: linear-gradient(90deg, #dde6ff, #eaf0ff); --f-pill: linear-gradient(180deg, #AFC0FF 4.62%, #1D3FE1 96.92%); --f-pbd: #3B5BFF; --f-psh: #0F2A804D; --f-circle: #C3D0FF; }
+.us-feat--c5 { --f-bg: linear-gradient(90deg, #ffe6d2, #fff0e2); --f-pill: linear-gradient(180deg, #FFC79A 4.62%, #E1530D 96.92%); --f-pbd: #FF6A2A; --f-psh: #80350F4D; --f-circle: #FFD0AE; }
+.us-feat--c6 { --f-bg: linear-gradient(90deg, #d2f1f2, #e3f7f8); --f-pill: linear-gradient(180deg, #9FE9EE 4.62%, #0E97A1 96.92%); --f-pbd: #19B3BD; --f-psh: #0A565B4D; --f-circle: #ABE9ED; }
+.us-feat--c7 { --f-bg: linear-gradient(90deg, #d6f3d6, #e7f9e7); --f-pill: linear-gradient(180deg, #A7E9AD 4.62%, #1E9E36 96.92%); --f-pbd: #34B648; --f-psh: #0A561A4D; --f-circle: #BEEFC4; }
+.us-feat--c8 { --f-bg: linear-gradient(90deg, #efdcff, #f6ecff); --f-pill: linear-gradient(180deg, #E0ACFF 4.62%, #8A1DDA 96.92%); --f-pbd: #B227FF; --f-psh: #570F804D; --f-circle: #E3C2FF; }
+
+/* ---- Dashed connector arrows ---- */
+.us-feat-arrow {
+  display: flex;
+  justify-content: center;
+  margin: 6px 0;
+}
+
+.us-feat-arrow svg {
+  width: 42px;
+  height: 60px;
+}
+
+/* shifted right, points down-right */
+.us-feat-arrow--a svg { transform: translateX(90px) scaleX(-1); }
+/* shifted left, points down-left/right */
+.us-feat-arrow--b svg { transform: translateX(-90px); }
+
+.us-arrow-c1 { color: #8a3cff; }
+.us-arrow-c2 { color: #ff4d6a; }
+.us-arrow-c3 { color: #7fa800; }
+.us-arrow-c4 { color: #3b5bff; }
+.us-arrow-c5 { color: #ff6a2a; }
+.us-arrow-c6 { color: #19b3bd; }
+.us-arrow-c7 { color: #34b648; }
+/* ==========================================
+   Features (Elite Unlocks) Section End
+========================================== */
+
+
+/* ==========================================
    Responsive Styles (centralized)
 ========================================== */
 @media (max-width: 1199px) {
@@ -483,6 +791,9 @@ h1, h2, h3, h4, h5, h6 {
   /* marquee (matches videoslyai-Final) */
   .marquee-track { animation-duration: 24s; }
   .marquee-item { font-size: 0.85rem; }
+  /* features */
+  .us-feat { gap: 28px; padding: 28px 26px; }
+  .us-feat-headbox .us-bm-img { display: none; }
 }
 
 @media (max-width: 767px) {
@@ -499,6 +810,19 @@ h1, h2, h3, h4, h5, h6 {
   /* marquee (matches videoslyai-Final) */
   .marquee-track { animation-duration: 22s; }
   .marquee-item { font-size: 0.875rem; }
+  /* features: stack media over body, video always on top */
+  .us-features { padding: 50px 0 56px; }
+  .us-feat,
+  .us-feat--vr { flex-direction: column; align-items: stretch; gap: 22px; }
+  .us-feat-media { flex: 1 1 auto; }
+  /* keep the backdrop circle subtle when media goes full-width */
+  .us-feat-media::before { width: 78%; }
+  .us-feat-body { text-align: center; }
+  .us-feat-desc { max-width: none; }
+  .us-feat-headbox h2 br { display: none; }
+  /* arrows centered on mobile */
+  .us-feat-arrow--a svg { transform: scaleX(-1); }
+  .us-feat-arrow--b svg { transform: none; }
 }
 
 @media (max-width: 575px) {
@@ -509,4 +833,7 @@ h1, h2, h3, h4, h5, h6 {
   /* marquee (matches videoslyai-Final) */
   .marquee-track { animation-duration: 20s; }
   .marquee-item { font-size: 0.82rem; }
+  /* features */
+  .us-feat { padding: 22px 18px; border-radius: 18px; }
+  .us-feat-pill { font-size: 15px; }
 }
