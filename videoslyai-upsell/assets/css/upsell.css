@@ -495,6 +495,7 @@ h1, h2, h3, h4, h5, h6 {
 .us-feat-list {
   display: flex;
   flex-direction: column;
+  gap: 40px;
 }
 
 .us-feat-headbox {
@@ -575,6 +576,9 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 28px;
     padding: 65px 50px;
   background: var(--f-bg);
+  border: 2px solid var(--f-cbd);
+  /* card shadow is the same across all blocks */
+  box-shadow: 0px 0px 80px 0px #79510D1A;
   /* clip the decorative circle to the rounded card */
   overflow: hidden;
 }
@@ -605,6 +609,13 @@ h1, h2, h3, h4, h5, h6 {
     pointer-events: none;
 }
 
+/* Even sections (video on the right) → mirror the circle to the right side */
+.us-feat--vr .us-feat-media::before {
+    left: auto;
+    right: 0;
+    transform: translate(40%, -50%);
+}
+
 .us-feat-video {
   position: relative;
   z-index: 1;
@@ -613,8 +624,8 @@ h1, h2, h3, h4, h5, h6 {
   /* small inner frame so the white border shows around the video */
   padding: 10px;
   background: linear-gradient(90deg, #FFFFFF 0%, #FFFFFF 109.81%);
-  border: 1.5px solid #B227FF;
-  box-shadow: 0px 10px 20px 0px #570F804D;
+  border: 1.5px solid var(--f-vbd);
+  box-shadow: 0px 10px 20px 0px var(--f-vsh);
 }
 
 /* video fills the inner frame, clipped to rounded corners */
@@ -676,7 +687,7 @@ h1, h2, h3, h4, h5, h6 {
   min-height: 52px;
   font-family: "Bakbak One", sans-serif;
   font-weight: 400;
-  font-size: clamp(15px, 1.5vw, 20px);
+  font-size: clamp(18px, 1.5vw, 28px);
   color: #fff;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.18);
   /* extra left padding leaves room for the protruding icon badge */
@@ -693,9 +704,10 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.15;
 }
 .us-feat-pill-wrap {
-    display: flex;
-    margin-bottom: 18px;
-      margin-left: -18px;
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 28px;
+    margin-left: -18px;
 }
 .us-feat-ic {
   width: 60px;
@@ -713,6 +725,7 @@ h1, h2, h3, h4, h5, h6 {
   justify-content: center;
     transform: translate(20px, 0);
     z-index: 1;
+    flex:none
 }
 
 .us-feat-ic img {
@@ -722,10 +735,21 @@ h1, h2, h3, h4, h5, h6 {
   display: block;
 }
 
+/* Per-block icon theme (background / border / shadow) — structure & size
+   come from the shared .us-feat-ic rule above (box 1 pattern) */
+.us-feat--c1 .us-feat-ic { background: linear-gradient(180deg, #E0ACFF 4.62%, #961DDA 96.92%); border: 2px solid #C860FF; box-shadow: 0px 0px 80px 0px #79510D1A; }
+.us-feat--c2 .us-feat-ic { background: linear-gradient(180deg, #FEBCC1 4.62%, #EA3F4F 96.92%); border: 2px solid #FF868E; box-shadow: 0px 0px 80px 0px #79510D1A; }
+.us-feat--c3 .us-feat-ic { background: linear-gradient(180deg, #CBE286 4.62%, #618106 96.92%); border: 2px solid #96B437; box-shadow: 0px 0px 80px 0px #79510D1A; }
+.us-feat--c4 .us-feat-ic { background: linear-gradient(180deg, #8EA0FF 4.62%, #2C41A7 96.92%); border: 2px solid #5977FF; box-shadow: 0px 0px 80px 0px #79510D1A; }
+.us-feat--c5 .us-feat-ic { background: linear-gradient(180deg, #FFCAAA 4.62%, #EB681D 96.92%); border: 1.5px solid #FF7637; box-shadow: 0px 10px 20px 0px #803E0F4D; }
+.us-feat--c6 .us-feat-ic { background: linear-gradient(180deg, #5ACED8 4.62%, #178A98 96.92%); border: 1.5px solid #33C1D0; box-shadow: 0px 10px 20px 0px #33C1D04D; }
+.us-feat--c7 .us-feat-ic { background: linear-gradient(180deg, #72D984 4.62%, #27933B 96.92%); border: 1.5px solid #2CCD49; box-shadow: 0px 10px 20px 0px #2CCD494D; }
+.us-feat--c8 .us-feat-ic { background: linear-gradient(180deg, #D589FF 4.62%, #9B16E0 96.92%); border: 1.5px solid #B227FF; box-shadow: 0px 10px 20px 0px #570F804D; }
+
 .us-feat-desc {
-  font-size: clamp(15px, 1.05vw, 20px);
+  font-size: clamp(16px, 1.05vw, 20px);
   color: #3a3a4a;
-  /* max-width: 470px; */
+  max-width: 670px;
   margin: 0;
 }
 
@@ -736,27 +760,37 @@ h1, h2, h3, h4, h5, h6 {
   --f-pbd: #B227FF;
   --f-psh: #570F804D;
   --f-circle: #E7BCFF;
-  border: 2px solid #C860FF;
-  box-shadow: 0px 0px 80px 0px #79510D1A;
+  --f-cbd: #C860FF;
+  --f-vbd: #B227FF;
+  --f-vsh: #570F804D;
 }
-.us-feat--c2 { --f-bg: linear-gradient(90deg, #ffe0e0, #ffecec); --f-pill: linear-gradient(180deg, #FFB3BC 4.62%, #E11D48 96.92%); --f-pbd: #FF4D6A; --f-psh: #80142E4D; --f-circle: #FFC9CE; }
-.us-feat--c3 { --f-bg: linear-gradient(90deg, #eef4d2, #f5f8e4); --f-pill: linear-gradient(180deg, #DCEB8F 4.62%, #6F9E00 96.92%); --f-pbd: #8FB500; --f-psh: #3E560A4D; --f-circle: #DCEB8F; }
-.us-feat--c4 { --f-bg: linear-gradient(90deg, #dde6ff, #eaf0ff); --f-pill: linear-gradient(180deg, #AFC0FF 4.62%, #1D3FE1 96.92%); --f-pbd: #3B5BFF; --f-psh: #0F2A804D; --f-circle: #C3D0FF; }
-.us-feat--c5 { --f-bg: linear-gradient(90deg, #ffe6d2, #fff0e2); --f-pill: linear-gradient(180deg, #FFC79A 4.62%, #E1530D 96.92%); --f-pbd: #FF6A2A; --f-psh: #80350F4D; --f-circle: #FFD0AE; }
-.us-feat--c6 { --f-bg: linear-gradient(90deg, #d2f1f2, #e3f7f8); --f-pill: linear-gradient(180deg, #9FE9EE 4.62%, #0E97A1 96.92%); --f-pbd: #19B3BD; --f-psh: #0A565B4D; --f-circle: #ABE9ED; }
-.us-feat--c7 { --f-bg: linear-gradient(90deg, #d6f3d6, #e7f9e7); --f-pill: linear-gradient(180deg, #A7E9AD 4.62%, #1E9E36 96.92%); --f-pbd: #34B648; --f-psh: #0A561A4D; --f-circle: #BEEFC4; }
-.us-feat--c8 { --f-bg: linear-gradient(90deg, #efdcff, #f6ecff); --f-pill: linear-gradient(180deg, #E0ACFF 4.62%, #8A1DDA 96.92%); --f-pbd: #B227FF; --f-psh: #570F804D; --f-circle: #E3C2FF; }
+.us-feat--c2 { --f-bg: linear-gradient(90deg, #F4C3C7 0%, #FFEDEE 100%); --f-cbd: #FF979F; --f-circle: #FEC3C8; --f-pill: linear-gradient(180deg, #FEBCC1 4.62%, #EA3F4F 96.92%); --f-pbd: #FF868E; --f-psh: #FF868E4D; --f-vbd: #FF868E; --f-vsh: #FF868E4D; }
+.us-feat--c3 { --f-bg: linear-gradient(90deg, #D9E5B3 0%, #F5F9E7 100%); --f-cbd: #B5CA7B; --f-circle: #CADE86; --f-pill: linear-gradient(180deg, #CBE286 4.62%, #618106 96.92%); --f-pbd: #96B437; --f-psh: #96B4374D; --f-vbd: #96B437; --f-vsh: #96B4374D; }
+.us-feat--c4 { --f-bg: linear-gradient(90deg, #C3CDFF 0%, #F2F4FF 100%); --f-cbd: #9CABF0; --f-circle: #BDC8FF; --f-pill: linear-gradient(180deg, #8EA0FF 4.62%, #2C41A7 96.92%); --f-pbd: #5977FF; --f-psh: #11227633; --f-vbd: #5977FF; --f-vsh: #570F804D; }
+.us-feat--c5 { --f-bg: linear-gradient(90deg, #FFD5C3 0%, #FFF7F2 100%); --f-cbd: #EDB798; --f-circle: #FFC7AC; --f-pill: linear-gradient(180deg, #FFCAAA 4.62%, #EB681D 96.92%); --f-pbd: #FF7637; --f-psh: #803E0F4D; --f-vbd: #FF7637; --f-vsh: #80310F4D; }
+.us-feat--c6 { --f-bg: linear-gradient(90deg, #D1EBEE 0%, #DFF2F4 100%); --f-cbd: #71CED7; --f-circle: #A1E3EB; --f-pill: linear-gradient(180deg, #5ACED8 4.62%, #178A98 96.92%); --f-pbd: #33C1D0; --f-psh: #33C1D04D; --f-vbd: #33C1D0; --f-vsh: #33C1D04D; }
+.us-feat--c7 { --f-bg: linear-gradient(90deg, #C3FFCE 0%, #E8FFEC 100%); --f-cbd: #80D090; --f-circle: #99EFA8; --f-pill: linear-gradient(180deg, #72D984 4.62%, #27933B 96.92%); --f-pbd: #2CCD49; --f-psh: #2CCD494D; --f-vbd: #2CCD49; --f-vsh: #2CCD494D; }
+.us-feat--c8 { --f-bg: linear-gradient(90deg, #EAC3FF 0%, #FAF2FF 100%); --f-cbd: #C860FF; --f-circle: #E7BCFF; --f-pill: linear-gradient(180deg, #D589FF 4.62%, #9B16E0 96.92%); --f-pbd: #B227FF; --f-psh: #570F804D; --f-vbd: #B227FF; --f-vsh: #570F804D; }
 
 /* ---- Dashed connector arrows ---- */
 .us-feat-arrow {
-  display: flex;
-  justify-content: center;
-  margin: 6px 0;
+    display: flex;
+    justify-content: center;
+    margin: -57px 0;
+    position: relative;
+    z-index: 1;
 }
 
 .us-feat-arrow svg {
   width: 42px;
   height: 60px;
+}
+
+/* connector arrow images (vector_1–7.png) — direction & colors baked in */
+.us-feat-arrow img {
+  height: 75px;
+  width: auto;
+  display: block;
 }
 
 /* shifted right, points down-right */
