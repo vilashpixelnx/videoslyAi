@@ -447,11 +447,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .marquee-item {
-  font-size: 14px;
-  font-weight: 700;
-  color: #fff;
-  text-transform: uppercase;
-  padding: 0 18px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+    text-transform: capitalize;
+    padding: 0 18px;
 }
 
 .marquee-star {
