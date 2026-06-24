@@ -72,30 +72,6 @@
     });
   }
 
-  /* VIDEO PLAY */
-  function vslVideoPlay() {
-    document.querySelectorAll(".vsl-video-player").forEach(function (player) {
-      var vid = player.querySelector("video");
-      var btn = player.querySelector(".vsl-play-btn");
-      if (!vid || !btn) return;
-      btn.addEventListener("click", function () {
-        if (vid.paused) {
-          vid.play();
-          btn.style.opacity = "0";
-        } else {
-          vid.pause();
-          btn.style.opacity = "1";
-        }
-      });
-      vid.addEventListener("pause", function () {
-        btn.style.opacity = "1";
-      });
-      vid.addEventListener("play", function () {
-        btn.style.opacity = "0";
-      });
-    });
-  }
-
   /* AOS — Comprehensive Scroll Animations */
   function vslAos() {
     if (typeof AOS === "undefined") return;
@@ -244,16 +220,19 @@
     }
   }
 
-  function observeGalleryIframes(scope) {
+  function observeGalleryIframes(scope, onLoad) {
     /* Load iframe src only when the slide is near the viewport. The horizontal
        rootMargin pre-loads a screen-width ahead so sliding never reveals an
-       unloaded slot — no visible jerk. */
+       unloaded slot — no visible jerk. onLoad(iframe) fires the instant a src
+       is assigned, so a Player.js listener can attach before the player is
+       ready (attaching afterwards would miss the one-shot "ready" event). */
     var pending = scope.querySelectorAll("iframe[data-src]");
     if (!pending.length) return;
 
     if (!("IntersectionObserver" in window)) {
       for (var i = 0; i < pending.length; i++) {
         pending[i].src = pending[i].dataset.src;
+        if (onLoad) onLoad(pending[i]);
       }
       return;
     }
@@ -264,6 +243,7 @@
         var f = e.target;
         if (f.dataset.src && !f.getAttribute("src")) {
           f.src = f.dataset.src;
+          if (onLoad) onLoad(f);
         }
         io.unobserve(f);
       });
@@ -274,6 +254,79 @@
     });
 
     for (var j = 0; j < pending.length; j++) io.observe(pending[j]);
+  }
+
+  /* Bridge gallery video playback -> marquee pause.
+     Bunny Stream (mediadelivery.net) iframes speak the Player.js protocol, so
+     we drive them with the official player.js library. We attach a Player to
+     each gallery iframe the moment its src is assigned, then count how many
+     videos are playing — both marquee rows pause while the count is > 0 and
+     resume at 0. Returns { attach } so the lazy-loader can wire each slide. */
+  function galleryVideoPauseBridge(scope, rows) {
+    var armed = new WeakSet();
+    var players = [];      // every attached player.js instance
+    var playing = 0;       // how many gallery videos are currently playing
+
+    function setRowsPaused(p) {
+      for (var i = 0; i < rows.length; i++) {
+        if (rows[i] && rows[i].setPaused) rows[i].setPaused(p);
+      }
+    }
+    function inc() {
+      playing++;
+      setRowsPaused(true);
+    }
+    function dec() {
+      playing = Math.max(0, playing - 1);
+      if (playing === 0) setRowsPaused(false);
+    }
+
+    /* Enforce single playback: when one video starts, pause every other one.
+       Pausing the others fires their own "pause" events, which keep the
+       playing counter (and the marquee) correct. */
+    function pauseOthers(current) {
+      for (var i = 0; i < players.length; i++) {
+        if (players[i] !== current) {
+          try {
+            players[i].pause();
+          } catch (e) {}
+        }
+      }
+    }
+
+    function attach(iframe) {
+      if (!iframe || armed.has(iframe)) return;
+      if (typeof playerjs === "undefined" || !playerjs.Player) return;
+      if (!iframe.getAttribute("src")) return; // only once the player is loading
+      armed.add(iframe);
+      try {
+        var player = new playerjs.Player(iframe);
+        players.push(player);
+        player.on("ready", function () {
+          player.on("play", function () {
+            pauseOthers(player); // only one video plays at a time
+            inc();
+          });
+          player.on("pause", dec);
+          player.on("ended", dec);
+        });
+      } catch (e) {
+        armed.delete(iframe); // let a later pass retry
+      }
+    }
+
+    /* Safety net: catch any iframe whose src was set without going through the
+       onLoad hook (e.g. the no-IntersectionObserver path), and retry while the
+       player.js library is still finishing its load. */
+    function scan() {
+      var frames = scope.querySelectorAll(".vsl-card iframe");
+      for (var i = 0; i < frames.length; i++) attach(frames[i]);
+    }
+    setTimeout(scan, 800);
+    setTimeout(scan, 2500);
+    setTimeout(scan, 6000);
+
+    return { attach: attach };
   }
 
   /* Custom RAF marquee - replaces Swiper for the two gallery rows.
@@ -347,6 +400,7 @@
       var offset = 0;
       var centered = false;
       var lastTime = null;
+      var externalPause = false;   // true while a gallery video is playing
       var manualHoldUntil = 0;
       var scrollStart = 0;
       var scrollEnd = 0;
@@ -475,7 +529,7 @@
         }
 
         var manualScrollActive = resolveScroll(now);
-        if (!manualScrollActive && !isDragging && now >= manualHoldUntil) {
+        if (!externalPause && !manualScrollActive && !isDragging && now >= manualHoldUntil) {
           offset += BASE_SPEED * dt * naturalDirection;
         }
 
@@ -491,6 +545,12 @@
       return {
         scrollOne: function (direction) {
           scrollByPixels(getSingleCardStep() * direction, 900);
+        },
+        setPaused: function (v) {
+          externalPause = !!v;
+          /* When resuming, reset the frame clock so the parked dt doesn't
+             produce a sudden jump on the next animation frame. */
+          if (!externalPause) lastTime = null;
         }
       };
     }
@@ -499,9 +559,15 @@
     var topCtl = setupRow(topEl, -1);
     var botCtl = setupRow(botEl, +1);
 
-    /* Load iframe src for any slide that becomes near-viewport.
-       Runs after cloning so clones are observed too. */
-    observeGalleryIframes(gallery);
+    /* Pause the marquee while any gallery video is playing, resume when it
+       pauses/ends. Create the bridge first so we can attach a Player.js
+       listener to each slide the instant its src is assigned. */
+    var pauseBridge = galleryVideoPauseBridge(gallery, [topCtl, botCtl]);
+
+    /* Load iframe src for any slide that becomes near-viewport, attaching the
+       video-playback listener at the same moment. Runs after cloning so clones
+       are observed too. */
+    observeGalleryIframes(gallery, pauseBridge.attach);
 
     var nextBtn = document.querySelector(".vsl-slider-next");
     var prevBtn = document.querySelector(".vsl-slider-prev");
@@ -524,7 +590,6 @@
     vslReveal();
     vslSticky();
     vslScroll();
-    vslVideoPlay();
     vslAos();
     vslParallax();
     vslNavbar();

@@ -1020,8 +1020,9 @@ img.vsl-right-icon {
   display: block;
   border: 0;
   object-fit: cover;
-  pointer-events: none;
-  /* swipe gestures pass through to the slider */
+  /* iframes stay interactive so the player's own play button is clickable
+     (videos no longer autoplay) — use the nav arrows / wheel to move the row */
+  pointer-events: auto;
 }
 
 .vsl-card:hover img {
@@ -1362,42 +1363,20 @@ img.vsl-right-icon {
   border: none;
 }
 
-.vsl-video-player video {
+.vsl-video-player video,
+.vsl-video-player iframe {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
+  border: 0;
   object-fit: cover;
   border-radius: 15px;
-}
-
-.vsl-play-btn {
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.15);
-  border: 2px solid rgba(255, 255, 255, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s, transform 0.2s;
-  position: absolute;
-  z-index: 2;
-  cursor: pointer;
 }
 
 .vsl-mul-section {
   padding-bottom: 10px;
   padding-top: 0;
-}
-
-.vsl-play-btn:hover {
-  background: rgba(255, 255, 255, 0.28);
-  transform: scale(1.1);
-}
-
-.vsl-play-btn svg {
-  margin-left: 4px;
 }
 
 /* Right: Content */
@@ -3714,8 +3693,7 @@ img {
     font-size: 0.85rem;
   }
 
-  .vsl-play-circle,
-  .vsl-play-btn {
+  .vsl-play-circle {
     width: 46px;
     height: 46px;
   }
@@ -3817,13 +3795,6 @@ img {
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
   background: rgba(10, 6, 21, 0.97) !important;
   backdrop-filter: blur(8px);
-}
-
-/* ── Play button always visible by default ── */
-.vsl-play-btn {
-  opacity: 1;
-  transition: opacity 0.3s;
-  cursor: pointer;
 }
 
 /* ── Generic image responsiveness ── */
@@ -4884,11 +4855,6 @@ img {
     height: 52px;
   }
 
-  .vsl-play-btn {
-    width: 44px;
-    height: 44px;
-  }
-
   .vsl-features-text {
     font-size: 0.875rem;
   }
@@ -5417,11 +5383,6 @@ img {
     height: 50px;
   }
 
-  .vsl-play-btn {
-    width: 40px;
-    height: 40px;
-  }
-
   /* ── Marquee ── */
   .marquee-track {
     animation-duration: 20s;
@@ -5494,11 +5455,6 @@ img {
   .vsl-play-circle {
     width: 44px;
     height: 44px;
-  }
-
-  .vsl-play-btn {
-    width: 38px;
-    height: 38px;
   }
 
   /* Footer nav single column */
@@ -5676,11 +5632,6 @@ img {
   .vsl-play-circle {
     width: 44px;
     height: 44px;
-  }
-
-  .vsl-play-btn {
-    width: 36px;
-    height: 36px;
   }
 
   .vsl-price span {
