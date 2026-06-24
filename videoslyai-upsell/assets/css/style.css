@@ -49,17 +49,6 @@ h1, h2, h3, h4, h5, h6 {
   overflow: hidden;
 }
 
-/* Thin gradient line accent at the very bottom of the banner */
-.us-banner::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #ffa713 0%, #ff2d06 100%);
-  opacity: 0.65;
-}
 
 .us-banner .container {
   max-width: 980px;
@@ -687,25 +676,22 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 52px;
+  min-height: 65px;
   font-family: "Bakbak One", sans-serif;
   font-weight: 400;
-  font-size: clamp(18px, 1.5vw, 28px);
+  font-size: clamp(20px, 2vw, 28px);
   color: #fff;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.18);
   /* extra left padding leaves room for the protruding icon badge */
-  padding: 10px 30px 10px 30px;
+  padding: 15px 30px;
   border-radius: 40px;
   border: 1.5px solid var(--f-pbd);
   background: var(--f-pill);
   /* 3D extruded base (hard dark layer) + soft drop shadow */
   box-shadow: 0 7px 0 0 var(--f-pdk), 0 16px 22px var(--f-psh);
-}
-
-.us-feat-pill--2line {
-  text-align: center;
   line-height: 1.15;
 }
+
 .us-feat-pill-wrap {
     display: inline-flex;
     align-items: center;
@@ -713,8 +699,8 @@ h1, h2, h3, h4, h5, h6 {
     margin-left: -18px;
 }
 .us-feat-ic {
-  width: 60px;
-  height: 60px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   background: var(--f-pill);
   border: 1.5px solid var(--f-pbd);
@@ -1284,7 +1270,7 @@ align-items: center;
   .marquee-item { font-size: 0.82rem; }
   /* features */
   .us-feat { padding: 22px 18px; border-radius: 18px; }
-  .us-feat-pill { font-size: 15px; }
+  .us-feat-pill { font-size: 18px; min-height: inherit; }
 .vsl-btn-inner {
     padding: 15px 20px;
 
