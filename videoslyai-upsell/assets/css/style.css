@@ -218,6 +218,14 @@ h1, h2, h3, h4, h5, h6 {
   overflow: hidden;
 }
 
+/* embedded VSL player fills the inner frame */
+.us-video-frame {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
 .us-play {
   width: 64px;
   height: 64px;
@@ -608,62 +616,14 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0px 10px 20px 0px var(--f-vsh);
 }
 
-/* video fills the inner frame, clipped to rounded corners */
+/* embedded player fills the inner frame, clipped to rounded corners */
 .us-feat-vid {
   width: 100%;
   height: 100%;
-  object-fit: cover;
   display: block;
+  border: 0;
   border-radius: 18px;
   background: #0a0a12;
-}
-
-/* large centered play overlay */
-.us-feat-play {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-  width: 76px;
-  height: 76px;
-  border: none;
-  border-radius: 50%;
-  background: rgba(20, 20, 28, 0.55);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: transform 0.2s, background 0.2s, opacity 0.25s, visibility 0.25s;
-}
-
-.us-feat-play:hover {
-  transform: translate(-50%, -50%) scale(1.08);
-  background: rgba(20, 20, 28, 0.82);
-}
-
-.us-feat-play svg {
-  width: 30px;
-  height: 30px;
-  transition: opacity 0.2s ease;
-}
-
-/* play icon shows by default, pause icon hidden */
-.us-feat-play .us-ic-play { margin-left: 3px; }
-.us-feat-play .us-ic-pause { display: none; margin-left: 0; }
-
-/* While playing: swap to the pause icon */
-.us-feat-video.is-playing .us-feat-play .us-ic-play { display: none; }
-.us-feat-video.is-playing .us-feat-play .us-ic-pause { display: block; }
-
-/* While playing: fade the overlay out, but keep it clickable so it can pause.
-   It reappears (as the pause button) on hover. */
-.us-feat-video.is-playing .us-feat-play {
-  opacity: 0;
-}
-
-.us-feat-video.is-playing:hover .us-feat-play {
-  opacity: 1;
 }
 
 .us-feat-body {
